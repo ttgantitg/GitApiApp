@@ -1,30 +1,34 @@
 package com.ttgantitg.gitapiapp
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import com.ttgantitg.gitapiapp.data.model.SearchModel
+import com.ttgantitg.gitapiapp.viewmodel.SearchViewModel
 import kotlinx.android.synthetic.main.activity_main.*
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+    lateinit var searchViewModel: SearchViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        (application as App).getComponent()?.inject(this)
+        searchViewModel = ViewModelProvider(this, viewModelFactory).get(SearchViewModel::class.java)
+
         var inputText: String?
 
         btn_check.setOnClickListener {
             inputText = textInputEdit.text.toString()
-            SearchRepositoryProvider.provideSearchRepository()
-                .searchUserRepos(inputText!!)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe({
-                    recycler_view.adapter = GitAdapter(it)
-                }, {
-                    Toast.makeText(this, "not found", Toast.LENGTH_LONG).show()
+            searchViewModel.loadData(inputText!!)
+                .observe(this, Observer<List<SearchModel?>> {
+                    recycler_view.adapter = GitAdapter(it as List<SearchModel>)
                 })
         }
     }

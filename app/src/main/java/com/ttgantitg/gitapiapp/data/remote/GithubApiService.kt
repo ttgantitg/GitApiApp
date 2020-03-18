@@ -1,4 +1,4 @@
-package com.ttgantitg.gitapiapp.data.api
+package com.ttgantitg.gitapiapp.data.remote
 
 import com.ttgantitg.gitapiapp.data.model.SearchModel
 import io.reactivex.Observable

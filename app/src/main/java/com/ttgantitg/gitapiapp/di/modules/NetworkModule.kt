@@ -1,6 +1,6 @@
 package com.ttgantitg.gitapiapp.di.modules
 
-import com.ttgantitg.gitapiapp.data.api.GithubApiService
+import com.ttgantitg.gitapiapp.data.remote.GithubApiService
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
@@ -8,8 +8,8 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
-@Module
-abstract class NetworkModule {
+@Module(includes = [ViewModelModule::class])
+class NetworkModule {
 
     @Provides
     @Singleton
