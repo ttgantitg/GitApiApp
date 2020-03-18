@@ -1,6 +1,6 @@
 package com.ttgantitg.gitapiapp.data.api
 
-import com.ttgantitg.gitapiapp.data.model.SearchResponse
+import com.ttgantitg.gitapiapp.data.model.UserRepo
 import io.reactivex.Observable
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -11,7 +11,7 @@ import retrofit2.http.Path
 interface GithubApiService {
 
     @GET("users/{user}/repos")
-    fun search(@Path("user", encoded = true) user: String): Observable<ArrayList<SearchResponse>>
+    fun search(@Path("user", encoded = true) user: String): Observable<List<UserRepo>>
 
 
     companion object Factory {

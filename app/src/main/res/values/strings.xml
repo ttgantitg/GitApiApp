@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">GitApiApp</string>
+    <string name="btn_check">Check</string>
+    <string name="text_in_enter_user">enter user</string>
 </resources>
