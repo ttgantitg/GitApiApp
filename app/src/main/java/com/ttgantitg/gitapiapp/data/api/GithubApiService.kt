@@ -13,7 +13,6 @@ interface GithubApiService {
     @GET("users/{user}/repos")
     fun search(@Path("user", encoded = true) user: String): Observable<List<UserRepo>>
 
-
     companion object Factory {
         fun create(): GithubApiService {
             val retrofit = Retrofit.Builder()

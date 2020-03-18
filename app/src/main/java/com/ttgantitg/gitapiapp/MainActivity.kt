@@ -19,8 +19,8 @@ class MainActivity : AppCompatActivity() {
 
         btn_check.setOnClickListener {
             inputText = textInputEdit.text.toString()
-            val repository = SearchRepositoryProvider.provideSearchRepository()
-            repository.searchUserRepos(inputText!!)
+            SearchRepositoryProvider.provideSearchRepository()
+                .searchUserRepos(inputText!!)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe({
