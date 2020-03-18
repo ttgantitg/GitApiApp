@@ -1,10 +1,8 @@
 package com.ttgantitg.gitapiapp
 
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.ttgantitg.gitapiapp.data.repository.SearchRepositoryProvider
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
